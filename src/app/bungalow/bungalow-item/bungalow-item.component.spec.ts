@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BongalowEditComponent } from './bongalow-edit.component';
+import { BungalowItemComponent } from './bungalow-item.component';
 
-describe('BongalowEditComponent', () => {
-  let component: BongalowEditComponent;
-  let fixture: ComponentFixture<BongalowEditComponent>;
+describe('BungalowItemComponent', () => {
+  let component: BungalowItemComponent;
+  let fixture: ComponentFixture<BungalowItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BongalowEditComponent ]
+      declarations: [ BungalowItemComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BongalowEditComponent);
+    fixture = TestBed.createComponent(BungalowItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

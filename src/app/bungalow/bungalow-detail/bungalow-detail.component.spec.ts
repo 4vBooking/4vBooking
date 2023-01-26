@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BongalowNewComponent } from './bongalow-new.component';
+import { BungalowDetailComponent } from './bungalow-detail.component';
 
-describe('BongalowNewComponent', () => {
-  let component: BongalowNewComponent;
-  let fixture: ComponentFixture<BongalowNewComponent>;
+describe('BungalowDetailComponent', () => {
+  let component: BungalowDetailComponent;
+  let fixture: ComponentFixture<BungalowDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BongalowNewComponent ]
+      declarations: [ BungalowDetailComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BongalowNewComponent);
+    fixture = TestBed.createComponent(BungalowDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
