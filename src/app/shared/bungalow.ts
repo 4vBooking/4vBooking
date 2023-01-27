@@ -4,7 +4,7 @@ export interface Bungalow {
     title: string;
     price: number;
     rating: number;
-    peopleCantiti: number;  
+    peopleCantity: number;  
     description: string;
     image: '';
 
