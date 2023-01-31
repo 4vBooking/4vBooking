@@ -12,7 +12,7 @@ import { Bungalow } from '../shared/bungalow';
 })
 
 
-export class BongalowService {
+export class BungalowService {
   private bungalowsUrl = 'api/bungalows';
   constructor(private http: HttpClient) { }
 
