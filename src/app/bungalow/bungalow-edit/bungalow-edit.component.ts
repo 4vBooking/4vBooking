@@ -61,6 +61,7 @@ export class BungalowEditComponent implements OnInit{
       idZona: '',
       price: '',
       peopleCantity: '',
+      description: '',
       image: '',
     })
     this.bunId = parseInt(this.activatedroute.snapshot.params['id']);
@@ -88,9 +89,48 @@ export class BungalowEditComponent implements OnInit{
       idZona : this.bungalow.idZona,
       price: this.bungalow.price,
       description: this.bungalow.description,
+      peopleCantity : this.bungalow.peopleCantity,
       image: this.bungalow.image,
     });
   }
     
+  deleteBungalow(): void {
+    if (this.bungalow.id === 0) {
+      // Don't delete, it was never saved.
+      this.onSaveComplete();
+    } else {
+      if (confirm(`Really delete the product: ${this.bungalow.title}?`)) {
+        this.bungalowService.deleteBungalow(this.bungalow.id).subscribe(
+          () => this.onSaveComplete(),
+          (error: any) => (this.errorMessage = <any>error)
+        );
+      }
+    }
+  }
+
+
+  saveBungalow(): void {
+    if (this.bungalowForm.valid) {
+      if (this.bungalowForm.dirty) {
+        this.bungalow = this.bungalowForm.value;
+        this.bungalow.id = this.bunId;
+
+        this.bungalowService.updateBungalow(this.bungalow).subscribe(
+          () => this.onSaveComplete(),
+          (error: any) => (this.errorMessage = <any>error)
+        );
+      } else {
+        this.onSaveComplete();
+      }
+    } else {
+      this.errorMessage = 'Please correct the validation errors.';
+    }
+  }
+
+  onSaveComplete(): void {
+    // Reset the form to clear the flags
+    this.bungalowForm.reset();
+    this.router.navigate(['']);
+  }
 
 }
