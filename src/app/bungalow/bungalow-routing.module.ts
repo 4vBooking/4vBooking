@@ -5,9 +5,9 @@ import { BungalowEditComponent } from './bungalow-edit/bungalow-edit.component';
 import { BungalowDetailComponent } from './bungalow-detail/bungalow-detail.component';
 
 const routes: Routes = [
-  { path: 'products/:id/new', component: BungalowNewComponent },
-  { path: 'products/:componentId', component: BungalowDetailComponent },
-  { path: 'products/:id/edit', component: BungalowEditComponent },
+  { path: 'bungalows/:id/new', component: BungalowNewComponent },
+  { path: 'bungalows/:componentId', component: BungalowDetailComponent },
+  { path: 'bungalows/:id/edit', component: BungalowEditComponent },
 ];
 
 @NgModule({
