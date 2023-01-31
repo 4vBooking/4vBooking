@@ -1,10 +1,96 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  OnDestroy,
+  ViewChildren,
+  ElementRef,
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  FormArray,
+  Validators,
+  FormControlName,
+} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { Bungalow } from '../../shared/bungalow';
+import { BungalowService } from '../../core/bungalow.service';
 
 @Component({
   selector: 'app-bungalow-edit',
   templateUrl: './bungalow-edit.component.html',
   styleUrls: ['./bungalow-edit.component.scss']
 })
-export class BungalowEditComponent {
+
+export class BungalowEditComponent implements OnInit{
+  pageTitle = 'Bungalow Edit';
+  errorMessage: string = '';
+  bungalowForm: any;
+
+  bunId: number = 0;
+  bungalow: Bungalow = {
+    id: 0,
+    idZona: 0,
+    title: '',
+    price: 0,
+    peopleCantity: 0,
+    description: '',
+    image: '',
+  };
+
+  constructor(
+    private fb: FormBuilder,
+    private activatedroute: ActivatedRoute,
+    private router: Router,
+    private bungalowService : BungalowService
+  ) {}
+
+  ngOnInit(): void {
+    this.bungalowForm = this.fb.group({
+      title: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+        ],
+      ],
+      idZona: '',
+      price: '',
+      peopleCantity: '',
+      image: '',
+    })
+    this.bunId = parseInt(this.activatedroute.snapshot.params['id']);
+    this.getBungalow(this.bunId);
+  }
+
+
+  getBungalow(id: number): void {
+    this.bungalowService.getBungalowById(id).subscribe(
+      (bungalow: Bungalow) => this.displayBungalow(bungalow),
+      (error: any) => (this.errorMessage = <any>error)
+    );
+  }
+
+  displayBungalow(bungalow: Bungalow): void {
+    if (this.bungalowForm) {
+      this.bungalowForm.reset();
+    }
+    this.bungalow = bungalow;
+    this.pageTitle = `Edit bungalow: ${this.bungalow.title}`;
+
+    // Update the data on the form
+    this.bungalowForm.patchValue({
+      title: this.bungalow.title,
+      idZona : this.bungalow.idZona,
+      price: this.bungalow.price,
+      description: this.bungalow.description,
+      image: this.bungalow.image,
+    });
+  }
+    
 
 }
