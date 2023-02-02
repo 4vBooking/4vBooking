@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+<<<<<<< HEAD
 import { BungalowService } from 'src/app/core/bungalow.service';
+=======
+>>>>>>> c907ab8c28902625b51c82d6531e32749cd5e23f
 import { Bungalow } from 'src/app/shared/bungalow';
 
 @Component({
@@ -38,4 +41,5 @@ export class BungalowDetailComponent {
   onBack(): void {
     this.router.navigate(['']);
   }
+
 }
