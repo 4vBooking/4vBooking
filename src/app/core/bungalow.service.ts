@@ -16,7 +16,7 @@ export class BungalowService {
   private bungalowsUrl = 'api/bungalows';
   constructor(private http: HttpClient) { }
 
-  getBongalows(): Observable<Bungalow[]>  {
+  getBungalows(): Observable<Bungalow[]>  {
     return this.http.get<Bungalow[]>(this.bungalowsUrl).pipe(
       tap((data) => console.log(JSON.stringify(data))),
       catchError(this.handleError)

@@ -1,1 +1,10 @@
-<p>bungalow-item works!</p>
+<figure class="figure">
+    <img src="{{bungalow.image}}" class="figure-img img-fluid rounded">
+    <figcaption class="figure-caption">
+      <h5><a [routerLink]="['/bungalows', bungalow.id]">{{bungalow.title}}</a>
+        <span>{{bungalow.price }}</span>
+      </h5>
+      <p>{{bungalow.description}}</p>
+    </figcaption>
+  </figure>
+  
