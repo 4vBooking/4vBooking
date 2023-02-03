@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { BungalowRoutingModule } from './bungalow-routing.module';
 import { BungalowDetailComponent } from './bungalow-detail/bungalow-detail.component';
 import { BungalowEditComponent } from './bungalow-edit/bungalow-edit.component';
@@ -20,6 +19,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     BungalowRoutingModule,
     SharedModule
-  ]
+  ],exports: [BungalowItemComponent],
+  
 })
 export class BungalowModule { }

@@ -6,7 +6,7 @@ export interface Bungalow {
     price: number;
     peopleCantity: number;  
     description: string;
-    image: '';
+    image: ''; 
 
   }
   
