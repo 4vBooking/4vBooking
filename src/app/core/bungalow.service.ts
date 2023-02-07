@@ -47,11 +47,11 @@ export class BungalowService {
   }
 
 
-  createBungalow(product: Bungalow): Observable<Bungalow> {
+  createBungalow(bungalow: Bungalow): Observable<Bungalow> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    product.id = 0;
+    bungalow.id = 0;
     return this.http
-      .post<Bungalow>(this.bungalowsUrl, product, { headers: headers })
+      .post<Bungalow>(this.bungalowsUrl, bungalow, { headers: headers })
       .pipe(
         tap((data) => console.log('createBungalow: ' + JSON.stringify(data))),
         catchError(this.handleError)
@@ -67,13 +67,13 @@ export class BungalowService {
     );
   }
 
-  updateBungalow(product: Bungalow): Observable<Bungalow> {
+  updateBungalow(bungalow: Bungalow): Observable<Bungalow> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.bungalowsUrl}/${product.id}`;
-    return this.http.put<Bungalow>(url, product, { headers: headers }).pipe(
-      tap(() => console.log('updateProduct: ' + product.id)),
-      // Return the product on an update
-      map(() => product),
+    const url = `${this.bungalowsUrl}/${bungalow.id}`;
+    return this.http.put<Bungalow>(url, bungalow, { headers: headers }).pipe(
+      tap(() => console.log('updatebungalow: ' + bungalow.id)),
+      // Return the bungalow on an update
+      map(() => bungalow),
       catchError(this.handleError)
     );
   }
