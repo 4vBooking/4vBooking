@@ -6,7 +6,7 @@ import { BungalowDetailComponent } from './bungalow-detail/bungalow-detail.compo
 
 const routes: Routes = [
   { path: 'bungalows/:id/new', component: BungalowNewComponent },
-  { path: 'bungalows/:componentId', component: BungalowDetailComponent },
+  { path: 'bungalows/:id', component: BungalowDetailComponent },
   { path: 'bungalows/:id/edit', component: BungalowEditComponent },
 ];
 

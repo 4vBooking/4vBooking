@@ -95,17 +95,14 @@ export class BungalowEditComponent implements OnInit{
   }
     
   deleteBungalow(): void {
-    if (this.bungalow.id === 0) {
-      // Don't delete, it was never saved.
-      this.onSaveComplete();
-    } else {
+    
       if (confirm(`Really delete the product: ${this.bungalow.title}?`)) {
         this.bungalowService.deleteBungalow(this.bungalow.id).subscribe(
           () => this.onSaveComplete(),
           (error: any) => (this.errorMessage = <any>error)
         );
       }
-    }
+    
   }
 
 
