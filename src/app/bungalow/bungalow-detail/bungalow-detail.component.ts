@@ -33,7 +33,7 @@ export class BungalowDetailComponent {
       .subscribe((data: Bungalow) => (this.bungalow = data));
   }
   goEdit(): void {
-    this.router.navigate(['/bungalows', this.id, 'edit']);
+    this.router.navigate(['/bungalows', this.bungalow.id, 'edit']);
   }
   onBack(): void {
     this.router.navigate(['']);
