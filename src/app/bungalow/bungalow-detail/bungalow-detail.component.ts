@@ -30,7 +30,9 @@ export class BungalowDetailComponent {
     this.id = parseInt(this.activatedroute.snapshot.params['id']);
     this.bungalowService
       .getBungalowById(this.id)
-      .subscribe((data: Bungalow) => (this.bungalow = data));
+      .subscribe((data: Bungalow) => {
+        this.bungalow = data
+      });
   }
   goEdit(): void {
     this.router.navigate(['/bungalows', this.bungalow.id, 'edit']);

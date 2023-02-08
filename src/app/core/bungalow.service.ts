@@ -23,7 +23,7 @@ export class BungalowService {
     );
   }
 
-  getMaxBungalowId(): Observable<number> {
+  public getMaxBungalowId(): Observable<number> {
     return this.http.get<Bungalow[]>(this.bungalowsUrl).pipe(
       // Get max value from an array
       map((data) =>
