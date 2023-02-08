@@ -51,16 +51,19 @@ export class BungalowNewComponent implements OnInit {
       idZona: '',
       price: '',
       peopleCantity: '',
-      descripcion: '',
+      description: '',
       image: '',
     })
-    this.bunId = parseInt(this.activatedroute.snapshot.params['id']);
     
+
   }
   savebungalow(): void {
     if (this.bungalowForm.valid) {
       if (this.bungalowForm.dirty) {
         this.bungalow = this.bungalowForm.value;
+        this.bungalowService.getMaxBungalowId().subscribe((id:number)=>{
+          this.bunId = id +1;
+        });    
         this.bungalow.id = this.bunId;
 
         this.bungalowService.createBungalow(this.bungalow).subscribe(
