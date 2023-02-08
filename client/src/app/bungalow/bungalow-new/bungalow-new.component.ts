@@ -16,8 +16,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./bungalow-new.component.scss']
 })
 
-
-
 export class BungalowNewComponent implements OnInit {
 
   bunId: number = 0;
