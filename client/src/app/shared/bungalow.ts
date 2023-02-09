@@ -1,10 +1,10 @@
 export interface Bungalow {
    
     id: number;
-    idZona: number;
+    id_zona: number;
     title: string;
     price: number;
-    peopleCantity: number;  
+    people_cantity: number;  
     description: string;
     image: ''; 
   }

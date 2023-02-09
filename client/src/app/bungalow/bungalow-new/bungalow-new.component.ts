@@ -21,10 +21,10 @@ export class BungalowNewComponent implements OnInit {
   bunId: number = 0;
   bungalow: Bungalow = {
     id: 0,
-    idZona: 0,
+    id_zona: 0,
     title: '',
     price: 0,
-    peopleCantity: 0,
+    people_cantity: 0,
     description: '',
     image: '',
   };

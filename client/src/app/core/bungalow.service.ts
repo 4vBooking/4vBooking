@@ -13,7 +13,7 @@ import { Bungalow } from '../shared/bungalow';
 
 
 export class BungalowService {
-  private bungalowsUrl = 'api/bungalows';
+  private bungalowsUrl = 'https://localhost:8000/bungalow-list';
   constructor(private http: HttpClient) { }
 
   getBungalows(): Observable<Bungalow[]>  {
