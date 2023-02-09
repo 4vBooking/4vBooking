@@ -33,10 +33,10 @@ export class BungalowEditComponent implements OnInit{
   bunId: number = 0;
   bungalow: Bungalow = {
     id: 0,
-    idZona: 0,
+    id_zona: 0,
     title: '',
     price: 0,
-    peopleCantity: 0,
+    people_cantity: 0,
     description: '',
     image: '',
   };
@@ -86,10 +86,10 @@ export class BungalowEditComponent implements OnInit{
     // Update the data on the form
     this.bungalowForm.patchValue({
       title: this.bungalow.title,
-      idZona : this.bungalow.idZona,
+      id_zona : this.bungalow.id_zona,
       price: this.bungalow.price,
       description: this.bungalow.description,
-      peopleCantity : this.bungalow.peopleCantity,
+      people_cantity : this.bungalow.people_cantity,
       image: this.bungalow.image,
     });
   }

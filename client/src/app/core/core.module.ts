@@ -12,7 +12,7 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
   imports: [
     CommonModule,
     HttpClientModule,
-    InMemoryWebApiModule.forRoot(BungalowData),
+    //InMemoryWebApiModule.forRoot(BungalowData),
   ],
   providers: [BungalowService],
 })
