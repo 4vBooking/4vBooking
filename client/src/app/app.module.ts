@@ -6,6 +6,7 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { BungalowListModule } from './bungalow-list/bungalow-list.module';
 import { BungalowModule } from './bungalow/bungalow.module';
+import {  ReservaModule } from './reserva/reserva.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { BungalowModule } from './bungalow/bungalow.module';
     SharedModule,
     CoreModule,
     BungalowListModule,
-    BungalowModule
+    BungalowModule,
+    ReservaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

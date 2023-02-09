@@ -7,6 +7,5 @@ export interface Bungalow {
     peopleCantity: number;  
     description: string;
     image: ''; 
-
   }
   
