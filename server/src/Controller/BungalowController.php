@@ -41,7 +41,7 @@ public function createBungalow(Request $request):Response{
         $bungalows_json=[];
         $tmp=[];
         foreach ($bungalows as $bungalow){
-            $tmp[] = [
+            $tmp = [
                 "id" => $bungalow->getId(),
                 "id_zona" => $bungalow->getIdZona(),
                 "title" => $bungalow->getTitle(),
