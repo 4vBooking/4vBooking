@@ -48,7 +48,7 @@ public function createBungalow(Request $request):Response{
                 "price" => $bungalow->getPrice(),
                 "people_cantity" => $bungalow->getPeopleCantity(),
                 "description" => $bungalow->getDescription(),
-                "imagen" => $bungalow->getImage()
+                "image" => $bungalow->getImage()
                 
             ];
             $bungalows_json[] = $tmp;
@@ -58,7 +58,7 @@ public function createBungalow(Request $request):Response{
         );
     }
 
-    #[Route('/bungalow/{id}', name: 'app_bungalow_details')]
+    #[Route('/bungalow-list/{id}', name: 'app_bungalow_details')]
     public function bungalowdetails(  $id,ManagerRegistry $doctrine): Response
     {
         //$bungalow = $doctrine->getRepository(bungalow::class)->find($id);
@@ -66,24 +66,30 @@ public function createBungalow(Request $request):Response{
             "id" => $id
         ]);        
         $bungalow_json = [
-                "id" => $bungalow->getId(),
-                "name" => $bungalow->getName(),
+                "image" => $bungalow->getImage(),
+                "title" => $bungalow->getTitle(),
                 "price" => $bungalow->getPrice(),
-                "desc" => $bungalow->getDescription()
+                "description" => $bungalow->getDescription(),
+                "people_cantity" => $bungalow->getPeopleCantity()
         ];       
-        return $this->json([
-            "bungalow" => $bungalow_json 
-        ]);
+        return $this->json(
+            $bungalow_json 
+        );
     }
     
-    #[Route('/bungalow/{id}/{name}', name: 'app_bungalow_edit')]
+    #[Route('/bungalow/{id}/{id_zona}/{title}/{price}/{people_cantity}/{description}/{image}', name: 'app_bungalow_edit')]
     public function bungalowedit(  $id,$name  ,   ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
         $bungalow = $doctrine->getRepository(Bungalow::class)->findOneBy([
             "id" => $id
         ]); 
-        $bungalow->setName($name);
+        $bungalow->setId_zona($name);
+        $bungalow->setTitle($title);
+        $bungalow->setPrice($price);
+        $bungalow->setPeople_cantity($people_cantity);
+        $bungalow->setDescription($description);
+        $bungalow->setImage($image);
         // Actualizamos el valor
         $em->persist($bungalow);
         $em->flush();
@@ -92,9 +98,11 @@ public function createBungalow(Request $request):Response{
         ]);
         $bungalow_json = [
                 "id" => $bungalow1->getId(),
-                "name" => $bungalow1->getName(),
-                "price" => $bungalow1->getPrice(),
-                "desc" => $bungalow1->getDescription()
+                "title" => $bungalow->getTitle(),
+                "price" => $bungalow->getPrice(),
+                "description" => $bungalow->getDescription(),
+                "people_cantity" => $bungalow->getPeopleCantity(),
+                "image" => $bungalow->getImage()
         ];       
         return $this->json([
             "bungalow" => $bungalow_json 
