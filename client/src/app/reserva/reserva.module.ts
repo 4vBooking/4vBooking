@@ -7,6 +7,8 @@ import { ReservaDetailComponent } from './reserva-detail/reserva-detail.componen
 import { ReservaEditComponent } from './reserva-edit/reserva-edit.component';
 
 import { SharedModule } from '../shared/shared.module';
+import { ReservaListComponent } from './reserva-list/reserva-list.component';
+import { ReservaItemComponent } from './reserva-item/reserva-item.component';
 
 
 
@@ -14,7 +16,9 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     ReservaNewComponent,
     ReservaDetailComponent,
-    ReservaEditComponent
+    ReservaEditComponent,
+    ReservaListComponent,
+    ReservaItemComponent
   ],
   imports: [
     CommonModule,
