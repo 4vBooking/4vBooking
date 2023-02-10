@@ -49,7 +49,7 @@ export class ReservaNewComponent implements OnInit {
     
 
   }
-  savereserva(): void {
+  saveReserva(): void {
     if (this.reservaForm.valid) {
       if (this.reservaForm.dirty) {
         this.reserva = this.reservaForm.value;
