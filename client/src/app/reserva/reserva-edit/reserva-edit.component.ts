@@ -49,15 +49,7 @@ export class ReservaEditComponent implements OnInit{
 
   ngOnInit(): void {
     this.reservaForm = this.fb.group({
-      title: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(50),
-        ],
-      ],
-      idBungalow: '',
+      
       idCliente: '',
       fechaEntrada: '',
       fechaSalida: '',
@@ -71,7 +63,7 @@ export class ReservaEditComponent implements OnInit{
 
   getReserva(id: number): void {
     this.reservaService.getReservaById(id).subscribe(
-      (bungalow: Reserva) => this.displayReserva(bungalow),
+      (reserva: Reserva) => this.displayReserva(reserva),
       (error: any) => (this.errorMessage = <any>error)
     );
   }
@@ -81,8 +73,7 @@ export class ReservaEditComponent implements OnInit{
       this.reservaForm.reset();
     }
     this.reserva = reserva;
-    this.pageTitle = `Edit reserva:`;
-    // ${this.reserva.title}
+    this.pageTitle = `Edit reserva:${this.reserva.id}`;
 
     // Update the data on the form
     this.reservaForm.patchValue({
@@ -93,7 +84,7 @@ export class ReservaEditComponent implements OnInit{
     });
   }
     
-  deleteBungalow(): void {
+  deleteReserva(): void {
     
       if (confirm(`Really delete the product`)) {
         this.reservaService.deleteReserva(this.reserva.id).subscribe(
@@ -105,7 +96,7 @@ export class ReservaEditComponent implements OnInit{
   }
 
 
-  saveBungalow(): void {
+  saveReserva(): void {
     if (this.reservaForm.valid) {
       if (this.reservaForm.dirty) {
         this.reserva = this.reservaForm.value;
