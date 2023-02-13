@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Bungalow;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Persistence\ManagerRegistry;
@@ -77,38 +78,47 @@ public function createBungalow(Request $request):Response{
         );
     }
     
-    #[Route('/bungalow/{id}/{id_zona}/{title}/{price}/{people_cantity}/{description}/{image}', name: 'app_bungalow_edit')]
-    public function bungalowedit(  $id,$name  ,   ManagerRegistry $doctrine): Response
+    /**
+     * @Route("/bungalow-list/{id}/update", name="bungalow-update", methods="put")
+     */
+    public function bungalowedit($id, Request $request): Response
     {
-        $em = $doctrine->getManager();
-        $bungalow = $doctrine->getRepository(Bungalow::class)->findOneBy([
-            "id" => $id
-        ]); 
-        $bungalow->setId_zona($name);
-        $bungalow->setTitle($title);
-        $bungalow->setPrice($price);
-        $bungalow->setPeople_cantity($people_cantity);
-        $bungalow->setDescription($description);
-        $bungalow->setImage($image);
+        $em = $this->doctrine->getManager();
+
+        $data = $request->getContent();
+        $content = json_decode($data);
+        $bungalow_stdClass = $content->bungalow;
+
+        $bungalow = $this->getDoctrine()->getRepository(Bungalow::class)->find($id);
+        $bungalow->setId_zona($bungalow_stdClass->id_zona);
+        $bungalow->setTitle($bungalow_stdClass->title);
+        $bungalow->setPrice($bungalow_stdClass->price);
+        $bungalow->setPeople_cantity($bungalow_stdClass->people_cantity);
+        $bungalow->setDescription($bungalow_stdClass->description);
+        $bungalow->setImage($bungalow_stdClass->image);
         // Actualizamos el valor
-        $em->persist($bungalow);
         $em->flush();
-        $bungalow1 = $doctrine->getRepository(Bungalow::class)->findOneBy([
-            "id" => $id
-        ]);
-        $bungalow_json = [
-                "id" => $bungalow1->getId(),
-                "title" => $bungalow->getTitle(),
-                "price" => $bungalow->getPrice(),
-                "description" => $bungalow->getDescription(),
-                "people_cantity" => $bungalow->getPeopleCantity(),
-                "image" => $bungalow->getImage()
-        ];       
+        
         return $this->json([
-            "bungalow" => $bungalow_json 
+            "message" => "Bungalow update",
+            $bungalow_stdClass
         ]);
     }
+    /**
+     * @Route("/bungalow/{id}/delete", name="bungalow-delete", methods="delete")
+     */
+    public function productDelete($id){
 
+        $em = $this->doctrine->getManager();
+        $bungalow = $this->getDoctrine()->getRepository(Bungalow::class)->find($id);
+
+        $em->remove($bungalow);
+        $em->flush();
+
+        return $this->json([
+            "message" =>"Bungalow deleted"
+        ]);
+    }
     #[Route('/bungalow', name: 'app_bungalow')]
     public function index(): JsonResponse
     {

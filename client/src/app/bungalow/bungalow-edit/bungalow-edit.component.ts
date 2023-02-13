@@ -58,9 +58,9 @@ export class BungalowEditComponent implements OnInit{
           Validators.maxLength(50),
         ],
       ],
-      idZona: '',
+      id_zona: '',
       price: '',
-      peopleCantity: '',
+      people_cantity: '',
       description: '',
       image: '',
     })

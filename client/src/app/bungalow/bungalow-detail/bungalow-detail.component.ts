@@ -35,7 +35,7 @@ export class BungalowDetailComponent {
       });
   }
   goEdit(): void {
-    this.router.navigate(['/bungalows', this.bungalow.id, 'edit']);
+    this.router.navigate(['/bungalows', this.id, 'edit']);
   }
   onBack(): void {
     this.router.navigate(['']);
