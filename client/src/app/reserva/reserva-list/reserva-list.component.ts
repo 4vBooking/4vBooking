@@ -8,12 +8,12 @@ import { Reserva } from 'src/app/shared/reserva';
   styleUrls: ['./reserva-list.component.scss']
 })
 export class ReservaListComponent implements OnInit {
-  reserva: Reserva[] = [];
+  reservas: Reserva[] = [];
   constructor(private reservaService: ReservaService) {}
 
   ngOnInit() {
     this.reservaService
       .getReservas()
-      .subscribe((data: Reserva[]) => (this.reserva = data));
+      .subscribe((data: Reserva[]) => (this.reservas = data));
   }
 }

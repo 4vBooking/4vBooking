@@ -9,21 +9,23 @@ import { ReservaEditComponent } from './reserva-edit/reserva-edit.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReservaListComponent } from './reserva-list/reserva-list.component';
 import { ReservaItemComponent } from './reserva-item/reserva-item.component';
+import { BungalowModule } from "../bungalow/bungalow.module";
 
 
 
 @NgModule({
-  declarations: [
-    ReservaNewComponent,
-    ReservaDetailComponent,
-    ReservaEditComponent,
-    ReservaListComponent,
-    ReservaItemComponent
-  ],
-  imports: [
-    CommonModule,
-    ReservaRoutingModule,
-    SharedModule
-  ]
+    declarations: [
+        ReservaNewComponent,
+        ReservaDetailComponent,
+        ReservaEditComponent,
+        ReservaListComponent,
+        ReservaItemComponent
+    ],
+    imports: [
+        CommonModule,
+        ReservaRoutingModule,
+        SharedModule,
+        BungalowModule
+    ]
 })
 export class ReservaModule { }
