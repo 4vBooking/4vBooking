@@ -13,7 +13,7 @@ use Doctrine\Persistence\ManagerRegistry;
 class BungalowController extends AbstractController{
     
      public function __constructor(ManagerRegistry $doctrine){
-      //  $this->doctrine = $doctrine;        
+        $this->doctrine = $doctrine;        
     }
 
 #[Route('/bungalow', name: 'create_bungalow')]
@@ -78,22 +78,20 @@ public function createBungalow(Request $request):Response{
         );
     }
     
-    /**
-     * @Route("/bungalow-list/{id}/update", name="bungalow-update", methods="put")
-     */
-    public function bungalowedit($id, Request $request): Response
+    #[Route('/bungalow-list/{id}/edit', name: 'app_bungalow_edit')]
+    public function bungalowedit($id, Request $request,ManagerRegistry $doctrine): Response
     {
-        $em = $this->doctrine->getManager();
+        $em = $doctrine->getManager();
 
         $data = $request->getContent();
         $content = json_decode($data);
         $bungalow_stdClass = $content->bungalow;
 
-        $bungalow = $this->getDoctrine()->getRepository(Bungalow::class)->find($id);
-        $bungalow->setId_zona($bungalow_stdClass->id_zona);
+        $bungalow = $doctrine->getRepository(Bungalow::class)->find($id);
+        $bungalow->setIdZona($bungalow_stdClass->id_zona);
         $bungalow->setTitle($bungalow_stdClass->title);
         $bungalow->setPrice($bungalow_stdClass->price);
-        $bungalow->setPeople_cantity($bungalow_stdClass->people_cantity);
+        $bungalow->setPeopleCantity($bungalow_stdClass->people_cantity);
         $bungalow->setDescription($bungalow_stdClass->description);
         $bungalow->setImage($bungalow_stdClass->image);
         // Actualizamos el valor
@@ -105,12 +103,12 @@ public function createBungalow(Request $request):Response{
         ]);
     }
     /**
-     * @Route("/bungalow/{id}/delete", name="bungalow-delete", methods="delete")
+     * @Route("/bungalow-list/{id}/delete", name="bungalow-delete", methods="delete")
      */
-    public function productDelete($id){
+    public function productDelete($id,ManagerRegistry $doctrine){
 
-        $em = $this->doctrine->getManager();
-        $bungalow = $this->getDoctrine()->getRepository(Bungalow::class)->find($id);
+        $em = $doctrine->getManager();
+        $bungalow = $doctrine->getRepository(Bungalow::class)->find($id);
 
         $em->remove($bungalow);
         $em->flush();
