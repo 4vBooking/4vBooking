@@ -8,9 +8,10 @@ import { BungalowListModule } from './bungalow-list/bungalow-list.module';
 import { BungalowModule } from './bungalow/bungalow.module';
 import {  ReservaModule } from './reserva/reserva.module';
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
