@@ -67,6 +67,7 @@ public function createBungalow(Request $request):Response{
             "id" => $id
         ]);        
         $bungalow_json = [
+                "id_zona" => $bungalow->getIdZona(),
                 "image" => $bungalow->getImage(),
                 "title" => $bungalow->getTitle(),
                 "price" => $bungalow->getPrice(),
@@ -78,14 +79,14 @@ public function createBungalow(Request $request):Response{
         );
     }
     
-    #[Route('/bungalow-list/{id}/edit', name: 'app_bungalow_edit')]
+    #[Route('/bungalow-list/edit/{id}', name: 'app_bungalow_edit')]
     public function bungalowedit($id, Request $request,ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
 
         $data = $request->getContent();
         $content = json_decode($data);
-        $bungalow_stdClass = $content->bungalow;
+        $bungalow_stdClass = $content;
 
         $bungalow = $doctrine->getRepository(Bungalow::class)->find($id);
         $bungalow->setIdZona($bungalow_stdClass->id_zona);
@@ -102,9 +103,8 @@ public function createBungalow(Request $request):Response{
             $bungalow_stdClass
         ]);
     }
-    /**
-     * @Route("/bungalow-list/{id}/delete", name="bungalow-delete", methods="delete")
-     */
+    
+    #[Route('/bungalow-list/delete/{id}', name: 'app_bungalow_delete')]
     public function productDelete($id,ManagerRegistry $doctrine){
 
         $em = $doctrine->getManager();

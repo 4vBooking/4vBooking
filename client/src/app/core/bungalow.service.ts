@@ -13,7 +13,7 @@ import { Bungalow } from '../shared/bungalow';
 
 
 export class BungalowService {
-  private bungalowsUrl = 'http://localhost:8000/bungalow-list';
+  private bungalowsUrl = 'https://localhost:8000/bungalow-list';
   constructor(private http: HttpClient) { }
 
   getBungalows(): Observable<Bungalow[]>  {
@@ -60,7 +60,7 @@ export class BungalowService {
 
   deleteBungalow(id: number): Observable<{}> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.bungalowsUrl}/${id}`;
+    const url = `${this.bungalowsUrl}/delete/${id}`;
     return this.http.delete<Bungalow>(url, { headers: headers }).pipe(
       tap((data) => console.log('deleteBungalow: ' + id)),
       catchError(this.handleError)
@@ -69,7 +69,7 @@ export class BungalowService {
 
   updateBungalow(bungalow: Bungalow): Observable<Bungalow> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.bungalowsUrl}/${bungalow.id}`;
+    const url = `${this.bungalowsUrl}/edit/${bungalow.id}`;
     return this.http.put<Bungalow>(url, bungalow, { headers: headers }).pipe(
       tap(() => console.log('updatebungalow: ' + bungalow.id)),
       // Return the bungalow on an update
