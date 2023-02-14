@@ -102,9 +102,7 @@ public function createBungalow(Request $request):Response{
             $bungalow_stdClass
         ]);
     }
-    /**
-     * @Route("/bungalow-list/{id}/delete", name="bungalow-delete", methods="delete")
-     */
+    #[Route('/bungalow-list/{id}/delete', name: 'app_bungalow_delete')]
     public function productDelete($id,ManagerRegistry $doctrine){
 
         $em = $doctrine->getManager();
