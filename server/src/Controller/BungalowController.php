@@ -16,19 +16,19 @@ class BungalowController extends AbstractController{
         $this->doctrine = $doctrine;        
     }
 
-#[Route('/bungalow', name: 'create_bungalow')]
-public function createBungalow(Request $request):Response{
+#[Route('/bungalow-list/create', name: 'create_bungalow')]
+public function createBungalow(Request $request,ManagerRegistry $doctrine):Response{
     $data = $request->getContent();
     $content = json_decode($data);
+    $em = $doctrine->getManager();
+    
+    $bungalow = $content;
+    $bungalow = new Bungalow();
+    $em->persist($bungalow);
+    $em->flush();
     
     
-    
-    $em = $this->getDoctrine()->getManager();
-    
-    $bungalow= new Bungalow();
-    $en->persist($product);
-    $en->flush();
-    
+
     $result = [
         
     ];
@@ -67,6 +67,7 @@ public function createBungalow(Request $request):Response{
             "id" => $id
         ]);        
         $bungalow_json = [
+                "id_zona" => $bungalow->getIdZona(),
                 "image" => $bungalow->getImage(),
                 "title" => $bungalow->getTitle(),
                 "price" => $bungalow->getPrice(),
@@ -78,14 +79,14 @@ public function createBungalow(Request $request):Response{
         );
     }
     
-    #[Route('/bungalow-list/{id}/edit', name: 'app_bungalow_edit')]
-    public function bungalowedit($id, Request $request,ManagerRegistry $doctrine): Response
+    #[Route('/bungalow-list/{id}/update', name: 'app_bungalow_update')]
+    public function bungalowupdate($id, Request $request,ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
 
         $data = $request->getContent();
         $content = json_decode($data);
-        $bungalow_stdClass = $content->bungalow;
+        $bungalow_stdClass = $content;
 
         $bungalow = $doctrine->getRepository(Bungalow::class)->find($id);
         $bungalow->setIdZona($bungalow_stdClass->id_zona);

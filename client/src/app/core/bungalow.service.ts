@@ -51,7 +51,7 @@ export class BungalowService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     bungalow.id = 0;
     return this.http
-      .post<Bungalow>(this.bungalowsUrl, bungalow, { headers: headers })
+      .post<Bungalow>(this.bungalowsUrl+'/create', bungalow, { headers: headers })
       .pipe(
         tap((data) => console.log('createBungalow: ' + JSON.stringify(data))),
         catchError(this.handleError)
@@ -60,7 +60,7 @@ export class BungalowService {
 
   deleteBungalow(id: number): Observable<{}> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.bungalowsUrl}/${id}`;
+    const url = `${this.bungalowsUrl}/${id}/delete`;
     return this.http.delete<Bungalow>(url, { headers: headers }).pipe(
       tap((data) => console.log('deleteBungalow: ' + id)),
       catchError(this.handleError)
@@ -69,7 +69,7 @@ export class BungalowService {
 
   updateBungalow(bungalow: Bungalow): Observable<Bungalow> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.bungalowsUrl}/${bungalow.id}`;
+    const url = `${this.bungalowsUrl}/${bungalow.id}/update`;
     return this.http.put<Bungalow>(url, bungalow, { headers: headers }).pipe(
       tap(() => console.log('updatebungalow: ' + bungalow.id)),
       // Return the bungalow on an update
