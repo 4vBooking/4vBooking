@@ -23,12 +23,10 @@ public function createBungalow(Request $request,ManagerRegistry $doctrine):Respo
     $em = $doctrine->getManager();
     
     $bungalow = $content;
-    $bungalow = new Bungalow();
+    $bungalow = new Bungalow($content->id_zona,$content->title,$content->price,$content->people_cantity,$content->description,$content->image);
     $em->persist($bungalow);
     $em->flush();
     
-    
-
     $result = [
         
     ];
