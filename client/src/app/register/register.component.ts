@@ -18,16 +18,16 @@ export class RegisterComponent {
     ) {
 
     this.form = this.fb.group({
-      email: ['', Validators.required],
+      username: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
   register() {
     const val = this.form.value;
-    if (val.email && val.password) {
+    if (val.username && val.password) {
       //TODO: Send register message to server
-      this.authService.register(val.email,val.password).subscribe(data=>{
+      this.authService.register(val.username,val.password).subscribe(data=>{
         console.log("User is registered");
         this.router.navigateByUrl('/');
       })

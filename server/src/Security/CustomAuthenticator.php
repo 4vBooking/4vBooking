@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Security;
 
 use App\Entity\User;
@@ -33,6 +32,7 @@ class CustomAuthenticator extends AbstractController
         );
         $user->setUsername($username);
         $user->setPassword($hashedPassword);
+        $user->setRoles($user->getRoles());
         $user->setIsActive(true);
 
         $em->persist($user);

@@ -24,4 +24,10 @@ export class NavbarComponent implements OnInit {
     this.reservaService.getMaxReservaId().subscribe((data) => (this.id = data));
     this.router.navigate(['/reserva', this.id, 'new']);
   }
+  login() {
+    this.router.navigate(['/login']);
+  }
+  register() {
+    this.router.navigate(['/register']);
+  }
 }

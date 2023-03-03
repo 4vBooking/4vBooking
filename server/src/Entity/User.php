@@ -1,18 +1,24 @@
 <?php
 
 namespace App\Entity;
-use Symfony\Component\Security\Core\User\UserInterface;
+
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\InheritanceType('SINGLE_TABLE')]
-#[ORM\DiscriminatorColumn(name: 'roles', type: 'simple_array')]
-#[ORM\DiscriminatorMap(['user' => User::class, 'seller' => Seller::class, 'buyer' => Buyer::class])]
+
+     
+/**
+ * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\InheritanceType('SINGLE_TABLE')
+ * @ORM\DiscriminatorColumn(name='roles', type='simple_array', options={"default": {}})
+ * @ORM\DiscriminatorMap({"user" = User::class, "seller" = Seller::class, "buyer" = Buyer::class})
+ */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+        
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -27,8 +33,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $isActive = null;
 
-    #[ORM\Column(type: Types::SIMPLE_ARRAY)]
-    private array $roles = ['ROLE_USER'];
+//    #[ORM\Column(type: Types::SIMPLE_ARRAY)]
+//    private array $roles = ['ROLE_USER'];
 
     public function getId(): ?int
     {
@@ -73,7 +79,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRoles(): array
     {
-        return $this->roles;
+        return ['ROLE_USER'];
+    }
+
+    public function eraseCredentials()
+    {
+        $this->password = null;
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->getUsername();
     }
 
     public function setRoles(array $roles): self
@@ -82,13 +98,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-    public function eraseCredentials() {
-        $this->password = "";
-    }
-
-    public function getUserIdentifier(): string {
-        return $thid->getUsername();
-    }
-
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'bungalow-list', pathMatch: 'full' },
@@ -9,6 +10,7 @@ const routes: Routes = [
     loadChildren: () => import('./bungalow-list/bungalow-list.module').then((m) => m.BungalowListModule),
   
   },{path: 'register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
