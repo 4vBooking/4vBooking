@@ -8,6 +8,7 @@ import { BungalowNewComponent } from './bungalow-new/bungalow-new.component';
 import { SharedModule } from '../shared/shared.module';
 
 
+
 @NgModule({
   declarations: [
     BungalowDetailComponent,
