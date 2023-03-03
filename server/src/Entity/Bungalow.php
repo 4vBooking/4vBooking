@@ -107,4 +107,15 @@ class Bungalow
 
         return $this;
     }
+    
+    public function __construct($id_zona, $title,$price,$people_cantity,$description,$image)
+    {
+        $this->id_zona = $id_zona;
+        $this->title = $title;
+        $this->price = $price;
+        $this->people_cantity = $people_cantity;
+        $this->description = $description;
+        $this->image = $image;
+        
+    }
 }

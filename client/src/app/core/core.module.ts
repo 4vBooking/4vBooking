@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BungalowData } from './bungalow-data';
 import { BungalowService } from './bungalow.service';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 
 
 
@@ -12,8 +14,9 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
   imports: [
     CommonModule,
     HttpClientModule,
+    
     //InMemoryWebApiModule.forRoot(BungalowData),
   ],
-  providers: [BungalowService],
+  providers: [BungalowService,AuthService,AuthGuard],
 })
 export class CoreModule { }

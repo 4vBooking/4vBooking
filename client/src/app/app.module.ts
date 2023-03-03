@@ -7,11 +7,15 @@ import { CoreModule } from './core/core.module';
 import { BungalowListModule } from './bungalow-list/bungalow-list.module';
 import { BungalowModule } from './bungalow/bungalow.module';
 import {  ReservaModule } from './reserva/reserva.module';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

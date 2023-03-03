@@ -40,17 +40,10 @@ export class BungalowNewComponent implements OnInit {
   bungalowForm: any;
   ngOnInit(): void {
     this.bungalowForm = this.fb.group({
-      title: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(50),
-        ],
-      ],
-      idZona: '',
+      title: '',
+      id_zona: '',
       price: '',
-      peopleCantity: '',
+      people_cantity: '',
       description: '',
       image: '',
     })

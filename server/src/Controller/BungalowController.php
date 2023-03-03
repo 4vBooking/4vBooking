@@ -16,18 +16,16 @@ class BungalowController extends AbstractController{
         $this->doctrine = $doctrine;        
     }
 
-#[Route('/bungalow', name: 'create_bungalow')]
-public function createBungalow(Request $request):Response{
+#[Route('/bungalow-list/create', name: 'create_bungalow')]
+public function createBungalow(Request $request,ManagerRegistry $doctrine):Response{
     $data = $request->getContent();
     $content = json_decode($data);
+    $em = $doctrine->getManager();
     
-    
-    
-    $em = $this->getDoctrine()->getManager();
-    
-    $bungalow= new Bungalow();
-    $en->persist($product);
-    $en->flush();
+    $bungalow = $content;
+    $bungalow = new Bungalow($content->id_zona,$content->title,$content->price,$content->people_cantity,$content->description,$content->image);
+    $em->persist($bungalow);
+    $em->flush();
     
     $result = [
         
@@ -79,8 +77,8 @@ public function createBungalow(Request $request):Response{
         );
     }
     
-    #[Route('/bungalow-list/edit/{id}', name: 'app_bungalow_edit')]
-    public function bungalowedit($id, Request $request,ManagerRegistry $doctrine): Response
+    #[Route('/bungalow-list/update/{id}', name: 'app_bungalow_update')]
+    public function bungalowupdate($id, Request $request,ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
 
@@ -103,7 +101,6 @@ public function createBungalow(Request $request):Response{
             $bungalow_stdClass
         ]);
     }
-    
     #[Route('/bungalow-list/delete/{id}', name: 'app_bungalow_delete')]
     public function productDelete($id,ManagerRegistry $doctrine){
 
